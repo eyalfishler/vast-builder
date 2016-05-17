@@ -14,15 +14,15 @@ const params = {
   adDescription: {},
   duration: {},
   clientId: {
-    defaultValue: '\'.$UserID.\''
+    defaultValue: '{{clientId}}'
   },
   clickThroughURL: {},
   mediaURL: {},
   mediaHeight: {
-    defaultValue: 250
+    defaultValue: 360
   },
   mediaWidth: {
-    defaultValue: 300
+    defaultValue: 640
   }
 };
 
