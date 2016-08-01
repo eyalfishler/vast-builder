@@ -8,22 +8,37 @@ import { Col, Row } from 'react-bootstrap';
 const defaultURL = 'vast.andyroid.net';
 const params = {
   mainURL: {
-    defaultValue: '//vast.andyroid.net/events'
+    defaultValue: '//trackvideo.andyroid.net/events'
   },
   adTitle: {},
   adDescription: {},
-  duration: {},
+  duration: {
+    defaultValue: '00:00:30'
+  },
   clientId: {
     defaultValue: '{{clientId}}'
   },
-  clickThroughURL: {},
-  mediaURL: {},
+  clickThroughURL: {
+    defaultValue: 'http://thesearch.net/yahoo/?UserID={{clientId}}&qid='
+  },
+  mediaURL: {
+     defaultValue: 'http://downloads.andyroid.net/videos/'
+  },
+  mediaFileName: {
+    defaultValue:'_640_360_30s.mp4'
+  },
   mediaHeight: {
     defaultValue: 360
   },
   mediaWidth: {
     defaultValue: 640
-  }
+  },
+   fullscreenData: {
+    defaultValue: 'false'
+  },
+  qid_value: {
+    defaultValue: '111'
+  },
 };
 
 const Form = React.createClass({
@@ -38,6 +53,12 @@ const Form = React.createClass({
     return state;
   },
   onClick: function(e) {
+    if (typeof this.state['adDescription'] == "undefined")
+      this.state['adDescription']=this.state['adTitle'];
+
+    if (typeof this.state['adDescription'] !== "undefined" && this.state['adDescription']=="")
+      this.state['adDescription']=this.state['adTitle'];
+      
     e.preventDefault();
     this.setState({
       res: VASTBuilder.create(this.state)
